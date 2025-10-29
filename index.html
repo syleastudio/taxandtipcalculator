@@ -4,6 +4,10 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>Tax & Tip Calculator • Sylea Studio</title>
+
+  <!-- Import Google Font: Poppins -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+
   <style>
     :root {
       --bg: #F4E8D2;
@@ -14,7 +18,7 @@
     html, body {
       height: 100%;
       margin: 0;
-      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+      font-family: 'Poppins', system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
       background: var(--bg);
       color: var(--fg);
       display: flex;
@@ -35,13 +39,24 @@
 
     h1 {
       margin: 0 0 8px 0;
-      font-size: 20px;
+      font-size: 22px;
+      font-weight: 600;
     }
 
     p.lead {
       margin: 4px 0 18px;
       color: rgba(28,29,34,0.7);
       font-size: 14px;
+      font-weight: 400;
+    }
+
+    label {
+      font-size: 14px;
+      font-weight: 500;
+      text-align: left;
+      display: block;
+      margin-bottom: 6px;
+      color: rgba(28,29,34,0.85);
     }
 
     input {
@@ -49,19 +64,17 @@
       padding: 10px 12px;
       border: 1px solid rgba(28,29,34,0.1);
       border-radius: 10px;
-      margin-bottom: 12px;
-      font-size: 16px;
+      margin-bottom: 14px;
+      font-size: 15px;
+      font-family: 'Poppins', sans-serif;
       color: var(--fg);
       background: rgba(255,255,255,0.9);
+      transition: border .15s ease;
     }
 
-    label {
-      font-size: 14px;
-      font-weight: 600;
-      text-align: left;
-      display: block;
-      margin-bottom: 6px;
-      color: rgba(28,29,34,0.85);
+    input:focus {
+      outline: none;
+      border: 1px solid var(--accent);
     }
 
     .btn {
@@ -72,6 +85,7 @@
       padding: 12px;
       border-radius: 10px;
       font-weight: 600;
+      font-family: 'Poppins', sans-serif;
       font-size: 15px;
       cursor: pointer;
       margin-top: 8px;
@@ -86,29 +100,32 @@
 
     .result {
       margin-top: 18px;
-      padding: 12px;
+      padding: 14px;
       border-radius: 12px;
       background: rgba(28,29,34,0.05);
       font-size: 15px;
       text-align: left;
       display: none;
+      font-family: 'Poppins', sans-serif;
     }
 
     .result p {
       margin: 6px 0;
+      font-weight: 500;
     }
 
     footer {
-      margin-top: 16px;
+      margin-top: 18px;
       font-size: 13px;
       color: rgba(28,29,34,0.65);
+      font-family: 'Poppins', sans-serif;
     }
   </style>
 </head>
 <body>
   <div class="card">
     <h1>Tax & Tip Calculator</h1>
-    <p class="lead">Calculate total cost including tax and tip.</p>
+    <p class="lead">Calculate your total cost including tax and tip.</p>
 
     <label for="amount">Bill amount ($)</label>
     <input type="number" id="amount" placeholder="e.g. 50" min="0" step="0.01"/>
