@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Tax & Tip Calculator • Sylea Studio</title>
+  <style>
+    :root {
+      --bg: #F4E8D2;
+      --fg: #1C1D22;
+      --accent: #1C1D22;
+    }
+
+    html, body {
+      height: 100%;
+      margin: 0;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+      background: var(--bg);
+      color: var(--fg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 6px 24px rgba(28,29,34,0.08);
+      padding: 28px;
+      width: 100%;
+      max-width: 420px;
+      text-align: center;
+    }
+
+    h1 {
+      margin: 0 0 8px 0;
+      font-size: 20px;
+    }
+
+    p.lead {
+      margin: 4px 0 18px;
+      color: rgba(28,29,34,0.7);
+      font-size: 14px;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid rgba(28,29,34,0.1);
+      border-radius: 10px;
+      margin-bottom: 12px;
+      font-size: 16px;
+      color: var(--fg);
+      background: rgba(255,255,255,0.9);
+    }
+
+    label {
+      font-size: 14px;
+      font-weight: 600;
+      text-align: left;
+      display: block;
+      margin-bottom: 6px;
+      color: rgba(28,29,34,0.85);
+    }
+
+    .btn {
+      width: 100%;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      padding: 12px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 15px;
+      cursor: pointer;
+      margin-top: 8px;
+      box-shadow: 0 6px 18px rgba(28,29,34,0.12);
+      transition: transform .12s ease, box-shadow .12s ease;
+    }
+
+    .btn:active {
+      transform: translateY(1px) scale(.99);
+      box-shadow: 0 3px 10px rgba(28,29,34,0.12);
+    }
+
+    .result {
+      margin-top: 18px;
+      padding: 12px;
+      border-radius: 12px;
+      background: rgba(28,29,34,0.05);
+      font-size: 15px;
+      text-align: left;
+      display: none;
+    }
+
+    .result p {
+      margin: 6px 0;
+    }
+
+    footer {
+      margin-top: 16px;
+      font-size: 13px;
+      color: rgba(28,29,34,0.65);
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Tax & Tip Calculator</h1>
+    <p class="lead">Calculate total cost including tax and tip.</p>
+
+    <label for="amount">Bill amount ($)</label>
+    <input type="number" id="amount" placeholder="e.g. 50" min="0" step="0.01"/>
+
+    <label for="tax">Tax rate (%)</label>
+    <input type="number" id="tax" placeholder="e.g. 8" min="0" step="0.1"/>
+
+    <label for="tip">Tip rate (%)</label>
+    <input type="number" id="tip" placeholder="e.g. 15" min="0" step="0.1"/>
+
+    <button class="btn" id="calcBtn">Calculate</button>
+
+    <div class="result" id="resultBox">
+      <p><strong>Subtotal:</strong> $<span id="subtotal">0.00</span></p>
+      <p><strong>Tax:</strong> $<span id="taxAmt">0.00</span></p>
+      <p><strong>Tip:</strong> $<span id="tipAmt">0.00</span></p>
+      <hr style="border:none; border-top:1px solid rgba(28,29,34,0.1); margin:8px 0;">
+      <p><strong>Total:</strong> $<span id="total">0.00</span></p>
+    </div>
+
+    <footer>Minimal Calculator • Sylea Studio</footer>
+  </div>
+
+  <script>
+    const calcBtn = document.getElementById('calcBtn');
+    const amountInput = document.getElementById('amount');
+    const taxInput = document.getElementById('tax');
+    const tipInput = document.getElementById('tip');
+    const resultBox = document.getElementById('resultBox');
+    const subtotalEl = document.getElementById('subtotal');
+    const taxAmtEl = document.getElementById('taxAmt');
+    const tipAmtEl = document.getElementById('tipAmt');
+    const totalEl = document.getElementById('total');
+
+    calcBtn.addEventListener('click', () => {
+      const amount = parseFloat(amountInput.value) || 0;
+      const taxRate = parseFloat(taxInput.value) || 0;
+      const tipRate = parseFloat(tipInput.value) || 0;
+
+      const tax = (taxRate / 100) * amount;
+      const tip = (tipRate / 100) * amount;
+      const total = amount + tax + tip;
+
+      subtotalEl.textContent = amount.toFixed(2);
+      taxAmtEl.textContent = tax.toFixed(2);
+      tipAmtEl.textContent = tip.toFixed(2);
+      totalEl.textContent = total.toFixed(2);
+
+      resultBox.style.display = "block";
+    });
+  </script>
+</body>
+</html>
